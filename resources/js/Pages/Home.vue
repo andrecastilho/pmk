@@ -1,19 +1,32 @@
 
-<template>
-    <div class="container">
-        <h1>Seja bem vindo!</h1>
-    </div>
+<style scoped>
+ table {
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis; 
+           /* "overflow" value must be different from "visible" */   
+}
+.table-responsive {
+  height: 100%;
+  width: 94%;
+}
 
-    <div>
-      <a class="btn btn-primary btn-lg active" role="button" aria-pressed="true" :href="route('doadores.create')">Criar</a>
-    </div>
-    
-    <table class="table">
-                        <thead>
-                          <tr class="font-bold text-left">
-                            <td class="border px-4 py-2">ID</td>
-                            <td class="border px-4 py-2">Nome</td>
-                            <td class="border px-4 py-2">Email</td>
+</style>
+        <template>
+          <container style="scroll-snap-type: none;">
+            <div class="container">
+                <h1>Seja bem vindo!{{ info }}</h1>
+            </div>
+              <div style="text-align: right;">
+                <a class="btn btn-primary btn-lg active" role="button" aria-pressed="true" :href="route('doadores.create')">Criar</a>
+              </div><br>
+                <div class="table-responsive" >
+                    <table class="table table-hover table-sm col-999" >
+                        <thead class="thead-dark">
+                          <tr scope="row"   class="font-bold text-left">
+                            <td scope="col" class="border px-4 py-2">ID</td>
+                            <td scope="col" class="border px-4 py-2">Nome</td>
+                            <td scope="col" class="border px-4 py-2">Email</td>
 
                             <td class="border px-4 py-2">Cpf</td>
                             <td class="border px-4 py-2">Telefone</td>
@@ -42,6 +55,8 @@
                           </tr>
                         </tbody>
                       </table>
+                    </div>
+                  </container>
                      
 </template>
 
@@ -52,6 +67,7 @@ export default{
   props: {
     doadores: Array,
     id:String,
+    info:Array
   },
 }
 </script>

@@ -13,6 +13,24 @@
   label{
     padding: 1%;
   }
+  table {
+  page-break-inside: auto;
+  width: 100%;
+  }
+
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto
+  }
+
+  thead {
+    display: table-header-group
+  }
+  fieldset{
+    width: 70%;
+  }
+
+
 </style>
 
 
@@ -24,69 +42,59 @@
         <legend>Formulário</legend>
 
         <div class="form-group">
-          <label for="nome">Nome</label>
-            <input class="form-control form-control-lg" @input="checkForm" type="text" name="nome" placeholder="Seu Nome" v-model="form.nome">
+            <input class="form-control form-control-lg" @input="checkForm" type="text" name="nome" placeholder="Nome" v-model="form.nome">
           <div v-if="form.errors.nome">{{ form.errors.nome }}</div>
         </div>
 
         <div class="form-group">
-          <label for="email">Email</label>
-          <input class="form-control form-control-lg" @input="checkForm"  type="text" name="email" placeholder="Seu Email" v-model="form.email">
+          <input class="form-control form-control-lg" @input="checkForm"  type="text" name="email" placeholder="Email" v-model="form.email">
           <div v-if="form.errors.email">{{ form.errors.email }}</div><br>
         </div>
 
         <div class="form-group">
-          <label for="email">Cpf</label>
-          <input class="form-control form-control-lg" @input="checkForm"  type="text" name="cpf" placeholder="Seu Cpf" v-model="form.cpf">
+          <input class="form-control form-control-lg" @input="checkForm"  type="text" name="cpf" placeholder="Cpf" v-model="form.cpf">
           <div v-if="form.errors.cpf">{{ form.errors.cpf }}</div>
         </div>
 
           <div class="form-group">
-            <label for="telefone">Celular</label>
-            <input class="form-control form-control-lg" @blur="checkForm" @input="acceptNumber"  type="tel" name="telefone" placeholder="Seu Telefone" v-model="form.telefone">
+            <input class="form-control form-control-lg" @blur="checkForm" @input="acceptNumber"  type="tel" name="telefone" placeholder="Telefone" v-model="form.telefone">
             <div v-if="form.errors.telefone">{{ form.errors.telefone }}</div>
           </div>
 
           <div class="form-group">
-            <label for="dt_nascimento">Data Nascimento</label>
             <input class="form-control form-control-lg" @input="checkForm" type="date" name="dt_nascimento" placeholder="Sua Data de Nascimento" v-model="form.dt_nascimento">
             <div v-if="form.errors.dt_nascimento">{{ form.errors.dt_nascimento }}</div>
           </div>
 
           <div class="form-group">
-            <label for="dt_cadastro">Data Cadastro</label>
             <input class="form-control form-control-lg" @input="checkForm" type="date" name="dt_cadastro" placeholder="Sua Data de Cadastro" v-model="form.dt_cadastro">
             <div v-if="form.errors.dt_cadastro">{{ form.errors.dt_cadastro }}</div>
           </div>
 
           <div class="form-group">
-            <label for="intervalo_doacao">Intervalo Doação</label>
+            <label>Intervalo de Doação</label>
             <select @change="checkForm" v-model="form.intervalo_doacao" name="intervalo_doacao">
-              <option value="0" >Selecione um Intervalo</option>
               <option value="Único">Único</option>
-              <option value="Bimestal">Bimestal</option>
+              <option value="Bimestral">Bimestral</option>
               <option value="Semestral">Semestral</option>
               <option value="Anual">Anual</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label for="forma_pagamento">Forma Pagamento</label>
+            <label>Forma de Pagamento</label>
             <select @change="checkForm"  v-model="form.forma_pagamento" name="forma_pagamento">
-                <option value="0">Selecione Forma de Pagamento</option>
                 <option value="Débito">Débito</option>
                 <option value="Crédito">Crédito</option>
               </select>
           </div>
 
           <div class="form-group">
-          <label for="endereco">Endereço</label>
           <input @input="checkForm" class="form-control form-control-lg" type="fone" name="endereco" placeholder="Endereço completo" v-model="form.endereco">
           <div v-if="form.errors.endereco">{{ form.errors.endereco }}</div>
           </div>
 
           <div class="form-group">
-          <label for="vl_doacao">Valor Doacao</label>
           <input @input="checkForm"  class="form-control form-control-lg"  type="number"  name="vl_doacao" placeholder="Valor da doação"  v-model="form.vl_doacao">
           <div v-if="form.errors.vl_doacao">{{ form.errors.vl_doacao }}</div>
           </div>
@@ -100,7 +108,7 @@
         
           <!-- submit -->
           <button @input="checkForm" :disabled="form.nome === null" type="submit" >Enviar</button>  
-          <button type="button" >Voltar</button>  
+          <button type="button" onclick="window. history. back() ">Voltar</button>  
         </fieldset>
     </form>
 </template>
@@ -145,10 +153,6 @@ export default defineComponent({
       console.log(this.form.nome ? this.errors.push("Nome obrigatório"): 0);
 
       this.errors = [];
-
-
-     
-
     
       if (!this.form.nome) {
         this.errors.push('O nome é obrigatório.');

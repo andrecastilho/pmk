@@ -27,8 +27,8 @@ class DoadoresController extends Controller
                             'intervalo_doacao'=> $doadores->intervalo_doacao,
                             'vl_doacao'=> $doadores->vl_doacao,
                             'forma_pagamento'=> $doadores->forma_pagamento,
-                            'endereco'=> $doadores->endereco
-                        ];
+                            'endereco'=> $doadores->endereco,
+                            'info'=>'Sucesso'                        ];
                     }
                 ),
             ]);
@@ -70,6 +70,6 @@ class DoadoresController extends Controller
             }),
             'create_url' => route('doadores.index',['info'=>'Sucesso']),
         ]);
-        return route('doadores.index');
+        return Redirect::route('doadores.index',['info'=>'Sucesso']);
     }
 }
