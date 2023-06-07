@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Doadores;
-use DB;
-
 
 class DoadoresController extends Controller
 {
@@ -48,14 +46,13 @@ class DoadoresController extends Controller
 
     public function save(Request $request)
     {
-        $matchThese =$request->all();
-        Doadores::updateOrCreate($matchThese);
+        Doadores::updateOrCreate($request->all());
 
         return Inertia::render('Home', [
             'doadores' => Doadores::all()->map(function ($doadores) {
                 return [
                     'id' => $doadores->id,
-                    'name' => $doadores->name,
+                    'name' => $doadores->nome,
                     'email' => $doadores->email,
                     'cpf'=> $doadores->cpf,
                     'telefone'=> $doadores->telefone,
@@ -65,11 +62,9 @@ class DoadoresController extends Controller
                     'vl_doacao'=> $doadores->vl_doacao,
                     'forma_pagamento'=> $doadores->forma_pagamento,
                     'endereco'=> $doadores->endereco,
-                    'edit_url' => route('doadores.edit', $doadores),
                 ];
             }),
-            'create_url' => route('doadores.index',['info'=>'Sucesso']),
+            'info' => "Criado com sucesso" ,
         ]);
-        return Redirect::route('doadores.index',['info'=>'Sucesso']);
     }
 }

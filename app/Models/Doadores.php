@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Doadores extends Model
 {
-    
     protected $fillable = [
         'nome',
         'email',
@@ -20,6 +19,4 @@ class Doadores extends Model
         'forma_pagamento',
         'endereco'
     ];
-
-
 }

@@ -107,7 +107,7 @@
           </p>
         
           <!-- submit -->
-          <button @input="checkForm" :disabled="form.nome === null" type="submit" >Enviar</button>  
+          <button @input="checkForm" name="enviar" type="submit" >Enviar</button>  
           <button type="button" onclick="window. history. back() ">Voltar</button>  
         </fieldset>
     </form>
@@ -153,41 +153,53 @@ export default defineComponent({
       console.log(this.form.nome ? this.errors.push("Nome obrigatório"): 0);
 
       this.errors = [];
+
     
       if (!this.form.nome) {
         this.errors.push('O nome é obrigatório.');
+        document.getElementsByName("enviar").disabled = true;
       }
 
       if (!this.form.email) {
+        document.getElementsByName("enviar").disabled = true;
         this.errors.push('O e-mail é obrigatório.');
       } else if (!this.validEmail(this.form.email)) {
         this.errors.push('Utilize um e-mail válido.');
+        document.getElementsByName("enviar").disabled = true;
       }
 
       if (!this.form.cpf) {
+        document.getElementsByName("enviar").disabled = true;
         this.errors.push('O CPF é obrigatório.');
       }
       if (!this.form.telefone) {
+        document.getElementsByName("enviar").disabled = true;
         this.errors.push('O celular é obrigatório.');
       }
        if (!this.form.dt_nascimento) {
+        document.getElementsByName("enviar").disabled = true;
         this.errors.push('A data de nascimento é obrigatório.');
       }
 
        if (!this.form.dt_cadastro) {
+        document.getElementsByName("enviar").disabled = true;
         this.errors.push('A data do cadastro é obrigatório.');
       }
        if (!this.form.intervalo_doacao) {
+        document.getElementsByName("enviar").disabled = true;
         this.errors.push('Intervalo de doação obrigatório.');
       }
        if (!this.form.forma_pagamento) {
+        document.getElementsByName("enviar").disabled = true;
         this.errors.push('Forma de pagamento obrigatório.');
       }
      
        if (!this.form.endereco) {
+        document.getElementsByName("enviar").disabled = true;
         this.errors.push('Endereço completo obrigatório.');
       }
        if (!this.form.vl_doacao) {
+        document.getElementsByName("enviar").disabled = true;
         this.errors.push('Valor doação obrigatório.');
       }
 
